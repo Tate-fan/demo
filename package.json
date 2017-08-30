@@ -1,0 +1,28 @@
+{
+  "name": "Demo",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "node ./www",
+    "test": "ava",
+    "prepush": "npm test",
+    "precommit": "npm test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "debug": "^3.0.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "chai": "^4.1.1",
+    "husky": "^0.14.3",
+    "supertest": "^3.0.0"
+  }
+}

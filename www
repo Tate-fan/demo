@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+const debug  = require('debug')('ysp:www');
+const {createServer} = require('http');
+const bunyan = require('bunyan');
+const art = require('ascii-art');
+
+const app    = require('./app/main');
+const {normalizePort} = require('./lib');
+
+const PORT = process.env.PORT || 10000;
+const server = createServer(app);
+
+const banner = String(art.style('YSP', 'framed'));
+
+
+const welcome = `
+===============================
+√√     √√  (  ____ )  (  ____ )
+√ √   √ √  | (     |  | (    )|
+ √ ©_© √   | (_____   | (____)|
+  √   √    (_____  )  |  _____)
+   √ √           ) |  | (
+   √ √     ||____) |  | )
+   √_√     |_______)  |/
+===============================
+`;
+
+
+
+/**
+ * server start
+ */
+server.listen(normalizePort(PORT));
+server.on('error', onError);
+server.on('listening', onListen);
+
+
+function onError(error) {
+  if(error.syscall !== 'listen') throw error;
+  var bind = typeof PORT === 'string'? 'Pipe' + PORT : 'Port' + PORT;
+  switch (error.code){
+    case 'EACCES':
+      console.error(bind);
+      process.exit(1);
+    case 'EADDRINUSE':
+      console.error(bind + 'is in USE');
+      process.exit(1);
+    default:
+      throw error;
+  }
+}
+
+function onListen() {
+  console.log(welcome);
+}
