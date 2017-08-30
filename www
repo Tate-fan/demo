@@ -1,30 +1,32 @@
 #!/usr/bin/env node
-const debug  = require('debug')('ysp:www');
-const {createServer} = require('http');
-const bunyan = require('bunyan');
-const art = require('ascii-art');
-
-const app    = require('./app/main');
+try { require('dotenv').load(); } catch(err) { }//Do Nothin
+const debug           = require('debug')('ysp:www');
+const {createServer}  = require('http');
+const bunyan          = require('bunyan');
+const app             = require('./app/main');
 const {normalizePort} = require('./lib');
+const chalk           = require('chalk');
 
 const PORT = process.env.PORT || 10000;
 const server = createServer(app);
 
-const banner = String(art.style('YSP', 'framed'));
+const show_banner = true;
 
-
-const welcome = `
-===============================
-√√     √√  (  ____ )  (  ____ )
-√ √   √ √  | (     |  | (    )|
- √ ©_© √   | (_____   | (____)|
-  √   √    (_____  )  |  _____)
-   √ √           ) |  | (
-   √ √     ||____) |  | )
-   √_√     |_______)  |/
-===============================
-`;
-
+var logger = bunyan.createLogger({name: 'YSP-API'});
+function showBanner() {
+  const banner = `
+                    ===============================
+                    √√     √√  (  ____ )  (  ____ )
+                    √ √   √ √  | (     |  | (    )|
+                     √ ©_© √   | (_____   | (____)|
+                      √   √    (_____  )  |  _____)
+                       √ √           ) |  | (
+                       √ √     ||____) |  | )
+                       √_√     |_______)  |/
+                    ===============================
+  `;
+  console.log(chalk.green(banner));
+}
 
 
 /**
@@ -51,5 +53,8 @@ function onError(error) {
 }
 
 function onListen() {
-  console.log(welcome);
+  if(show_banner) showBanner();
+  console.log(process.env.DEBUG);
+  debug('begin your show');
+  logger.info('Start server at ' + server.address().port + ' port');
 }
