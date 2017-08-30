@@ -1,0 +1,35 @@
+#%RAML 1.0
+
+title: YSP manager rest ful api
+version: v1
+baseUri: http://localhost:10000/api/{version}
+protocols:
+  - HTTP
+mediaType: application/json
+
+/api/v1:
+  /:
+    get:
+      description: API home page
+      displayName: api home
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                  version: 1.0.0
+                  timestmp: 123123131321
+                  message: welcome to maanger rest ful api
+
+  /users:
+    get:
+      description: Get User list
+      displayName: users
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                - name: fyt
+                  age: 19
+                  address: henanxuchang

@@ -1,31 +1,32 @@
 #!/usr/bin/env node
-try { require('dotenv').load(); } catch(err) { }//Do Nothin
+try { require('dotenv').load(); } catch(err) { }//Do Nothing
 const debug           = require('debug')('ysp:www');
 const {createServer}  = require('http');
 const bunyan          = require('bunyan');
-const app             = require('./app/main');
-const {normalizePort} = require('./lib');
+const app             = require('./src/app');
+const {normalizePort} = require('./src/lib');
 const chalk           = require('chalk');
 
 const PORT = process.env.PORT || 10000;
 const server = createServer(app);
-
 const show_banner = true;
 
-var logger = bunyan.createLogger({name: 'YSP-API'});
+
 function showBanner() {
   const banner = `
-                    ===============================
-                    √√     √√  (  ____ )  (  ____ )
-                    √ √   √ √  | (     |  | (    )|
-                     √ ©_© √   | (_____   | (____)|
-                      √   √    (_____  )  |  _____)
-                       √ √           ) |  | (
-                       √ √     ||____) |  | )
-                       √_√     |_______)  |/
-                    ===============================
+        ===============================
+        √√     √√  (  ____ )  (  ____ )
+        √ √   √ √  | (     |  | (    )|
+         √ ©_© √   | (_____   | (____)|
+          √   √    (_____  )  |  _____)
+           √ √           ) |  | (
+           √ √     ||____) |  | )
+           √_√     |_______)  |/
+        ===============================
   `;
+  console.log(chalk.blue('=================================================='));
   console.log(chalk.green(banner));
+  console.log(chalk.blue('=================================================='));
 }
 
 
@@ -54,7 +55,6 @@ function onError(error) {
 
 function onListen() {
   if(show_banner) showBanner();
-  console.log(process.env.DEBUG);
-  debug('begin your show');
-  logger.info('Start server at ' + server.address().port + ' port');
+  debug('NODE_EVN: %s', process.env.NODE_ENV);
+  debug('Server start at: %s port', server.address().port);
 }

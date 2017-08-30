@@ -20,4 +20,7 @@ run-prod:
 build-image:
 	docker build -t ${TARGET} .
 
+build-doc:
+	@npm run build-doc
+
 .PHONY: all test
