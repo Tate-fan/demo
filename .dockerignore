@@ -2,3 +2,5 @@
 Dockerfile
 Makefile
 .dist
+.env
+node_modules

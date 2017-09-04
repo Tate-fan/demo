@@ -18,6 +18,7 @@ run-prod:
 	npm start
 
 build-image:
+	- docker rmi ${TARGET}
 	docker build -t ${TARGET} .
 
 build-doc:
