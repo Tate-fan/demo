@@ -1,4 +1,4 @@
-# YSP demo Makefile
+# demo Makefile
 export NODE_ENV=production
 VERSION := $(shell cat package.json | jq '.version')
 TARGET := ysp/manager-api:${VERSION}
@@ -24,4 +24,7 @@ build-image:
 build-doc:
 	@npm run build-doc
 
-.PHONY: all test
+fix:
+	@npm run fix
+
+.PHONY: all test run-prod build-image build-doc fix
