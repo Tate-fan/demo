@@ -27,6 +27,9 @@ function showBanner() {
   console.log(chalk.blue('=================================================='));
 }
 
+console.log(require('util').inspect(debug));
+console.log(process.env.DEBUG)
+
 
 /**
  * server start
