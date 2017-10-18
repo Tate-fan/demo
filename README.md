@@ -1,6 +1,8 @@
 NODE DEMO
 =========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/cheerfyt/demo.svg)](https://greenkeeper.io/)
+
 - 项目结构
 - 开发流程
 - 代码风格
